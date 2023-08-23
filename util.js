@@ -61,8 +61,10 @@ javascript: (async () => {
 			(result[Math.floor(value)] ??= []).push(value - Math.floor(value));
 		}
 		for (const key of Object.keys(result)) {
-			result[key] = result[key].sort((a, b) => a > b).reduce((y,x)=>y+Math.round(x*10), '')
+			result[key] = result[key].sort((a, b) => a > b).reduce((y,x)=>y+Math.round(x*10), '');
 		}
 		return result;
 	};
+
+	window.util.stemLeafSplit = (plot) => plot.flatMap(([a, b]) => b&&String(b).split('').map(c=>+(a+(String(a).includes('.')?'':'.')+c))).filter(x=>x);
 })();
