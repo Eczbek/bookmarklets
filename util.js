@@ -5,7 +5,10 @@ javascript: (async () => {
 	
 	window.util.midpoints = (min, width, count) => [...Array(count)].map((_, y) => (min * 2 + y * width * 2 + width - 1) / 2);
 	
-	window.util.zip = (arr1, arr2, callback) => arr1.map((x, y) => callback(x, arr2[y]));
+	window.util.zip = = (callback, arrays) => [...Array(Math.max(...arrays.map((array) => array.length)))].fill().map((_, i) => {
+		const elements = arrays.filter((array) => array.length > i).map((array) => array[i]);
+		return elements.length < 2 ? elements[0] : elements.slice(1).reduce(callback, elements[0]);
+	});
 	
 	window.util.relativeFrequencies = (frequencies, decimals = 2) => frequencies.map((x, y, z) => window.util.round(x / z.reduce((a, b) => a + b), decimals));
 	
