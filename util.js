@@ -5,7 +5,7 @@ javascript: (async () => {
 	
 	window.util.midpoints = (min, width, count) => [...Array(count)].map((_, y) => (min * 2 + y * width * 2 + width - 1) / 2);
 	
-	window.util.zip = = (callback, arrays) => [...Array(Math.max(...arrays.map((array) => array.length)))].fill().map((_, i) => {
+	window.util.zip = (callback, arrays) => [...Array(Math.max(...arrays.map((array) => array.length)))].fill().map((_, i) => {
 		const elements = arrays.filter((array) => array.length > i).map((array) => array[i]);
 		return elements.length < 2 ? elements[0] : elements.slice(1).reduce(callback, elements[0]);
 	});
