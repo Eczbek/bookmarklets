@@ -51,5 +51,18 @@ javascript: (async () => {
 	
 	window.util.removeElement = (x) => x.parentElement.removeChild(x);
 
-	window.util.getData = () => [...document.querySelectorAll('div>span>div>div>.AnsedObject')].map((x) => +x.textContent);
+	window.util.getData1 = () => [...document.querySelectorAll('div>span>div>div>.AnsedObject')].map((x) => +x.textContent);
+
+	window.util.getData2 = () => [...document.querySelectorAll('center>table>tbody>tr>td>span>div>div>span.AnsedObject')].map((element) => +element.textContent);
+
+	window.util.stemLeafPlot = (values) => {
+		const result = {};
+		for (const value of values) {
+			(result[Math.floor(value)] ??= []).push(value - Math.floor(value));
+		}
+		for (const key of Object.keys(result)) {
+			result[key] = result[key].sort((a, b) => a > b).reduce((y,x)=>y+Math.round(x*10), '')
+		}
+		return result;
+	};
 })();
