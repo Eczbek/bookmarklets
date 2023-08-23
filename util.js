@@ -10,16 +10,16 @@ javascript: (async () => {
 		return elements.length < 2 ? elements[0] : elements.slice(1).reduce(callback, elements[0]);
 	});
 	
-	window.util.relativeFrequencies = (frequencies, decimals = 2) => frequencies.map((x, y, z) => window.util.round(x / z.reduce((a, b) => a + b), decimals));
+	window.util.relativeFrequencies = (frequencies) => frequencies.map((x, y, z) => x / z.reduce((a, b) => a + b, 0));
 	
-	window.util.relativeCategoryFrequencies = (freqs, minimum, width, decimals) => {
+	window.util.relativeCategoryFrequencies = (freqs, minimum, width) => {
 		const g = [];
 		const max = Math.max(...freqs);
 		while (minimum <= max) {
 			g.push(freqs.reduce((x, y) => x + (y >= minimum - 0.5 && y <= minimum + width - 0.5), 0));
 			minimum += width;
 		}
-		return window.util.relativeFrequencies(g, decimals);
+		return window.util.relativeFrequencies(g);
 	};
 	
 	window.util.mean = (values) => values.reduce((x, y) => x + y, 0) / values.length;
@@ -28,7 +28,7 @@ javascript: (async () => {
 	
 	window.util.mode = (values) => Math.max(...values);
 	
-	window.util.frequenciesMean = (frequencies, midpoints, decimals) => window.util.zip(frequencies, midpoints, (x, y) => x * y).reduce((x, y) => x + y, 0) / frequencies.reduce((x, y) => x + y, 0);
+	window.util.frequenciesMean = (frequencies, midpoints) => window.util.zip(frequencies, midpoints, (x, y) => x * y).reduce((x, y) => x + y, 0) / frequencies.reduce((x, y) => x + y, 0);
 	
 	window.util.removeElement = (x) => x.parentElement.removeChild(x);
 })();
