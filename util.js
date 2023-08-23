@@ -1,6 +1,6 @@
-// for statistics homework
-
 javascript: (async () => {
+	/* for statistics homework */
+	
 	window.util = {};
 	
 	window.util.round = (value, decimals = 2) => Math.round(value * (10 ** decimals)) / (10 ** decimals);
