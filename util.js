@@ -16,7 +16,7 @@ javascript: (async () => {
 		return result;
 	}, {});
 
-	window.util.categoryFrequencies = (values, min, width) => {
+	window.util.classFrequencies = (values, min, width) => {
 		const g = [];
 		for (let i = 0; min <= Math.max(...values); ++i) {
 			g[i] = values.reduce((x, y) => x + (y >= min && y < min + width), 0);
@@ -27,7 +27,7 @@ javascript: (async () => {
 	
 	window.util.relativeFrequencies = (frequencies) => frequencies.map((x, y, z) => x / z.reduce((a, b) => a + b, 0));
 	
-	window.util.relativeCategoryFrequencies = (freqs, minimum, width) => {
+	window.util.relativeClassFrequencies = (freqs, minimum, width) => {
 		const g = [];
 		const max = Math.max(...freqs);
 		while (minimum <= max) {
@@ -37,7 +37,7 @@ javascript: (async () => {
 		return window.util.relativeFrequencies(g);
 	};
 
-	window.util.categoryMidpoints = (min, width, count) => [...Array(count)].map((_, y) => (min * 2 + y * width * 2 + width - 1) / 2);
+	window.util.classMidpoints = (min, width, count) => [...Array(count)].map((_, y) => (min * 2 + y * width * 2 + width - 1) / 2);
 	
 	window.util.mean = (values) => values.reduce((x, y) => x + y, 0) / values.length;
 	
@@ -51,6 +51,8 @@ javascript: (async () => {
 	window.util.weightedMean = (values, weights) => values.reduce((total, value, index) => total + value * weights[index], 0) / weights.reduce((total, weight) => total + weight,0);
 	
 	window.util.frequenciesMean = (frequencies, midpoints) => window.util.zip(frequencies, midpoints, (x, y) => x * y).reduce((x, y) => x + y, 0) / frequencies.reduce((x, y) => x + y, 0);
+
+	window.util.elementsValues = (selector) => [...document.querySelectorAll(selector)].map((element) => +element.textContent);
 	
 	window.util.removeElement = (x) => x.parentElement.removeChild(x);
 
