@@ -43,7 +43,10 @@ javascript: (async () => {
 	
 	window.util.mean = (values) => values.reduce((x, y) => x + y, 0) / values.length;
 	
-	window.util.median = (values) => values.length % 2 ? values[(values.length - 1) / 2] : (values[values.length / 2 - 1] + values[values.length / 2]) / 2;
+	window.util.median = (values) => {
+		values = values.sort((a, b) => a > b);
+		return values.length % 2 ? values[(values.length - 1) / 2] : (values[values.length / 2 - 1] + values[values.length / 2]) / 2;
+	};
 	
 	window.util.mode = (values) => Math.max(...values);
 
