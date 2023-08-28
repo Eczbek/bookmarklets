@@ -1,9 +1,7 @@
 javascript: (async () => {
-	/* for statistics homework */
-	
 	window.util = {};
 	
-	window.util.round = (value, decimals = 2) => Math.round(value * (10 ** decimals)) / (10 ** decimals);
+	window.util.round = (value, step = 1) => Math.round(value / step) * step;
 	
 	window.util.zip = (callback, arrays) => [...Array(Math.max(...arrays.map((array) => array.length)))].fill().map((_, i) => {
 		const elements = arrays.filter((array) => array.length > i).map((array) => array[i]);
@@ -55,10 +53,6 @@ javascript: (async () => {
 	window.util.frequenciesMean = (frequencies, midpoints) => window.util.zip(frequencies, midpoints, (x, y) => x * y).reduce((x, y) => x + y, 0) / frequencies.reduce((x, y) => x + y, 0);
 	
 	window.util.removeElement = (x) => x.parentElement.removeChild(x);
-
-	window.util.getData1 = () => [...document.querySelectorAll('div>span>div>div>.AnsedObject')].map((x) => +x.textContent);
-
-	window.util.getData2 = () => [...document.querySelectorAll('center>table>tbody>tr>td>span>div>div>span.AnsedObject')].map((element) => +element.textContent);
 
 	window.util.stemLeafPlot = (values) => {
 		const result = {};
