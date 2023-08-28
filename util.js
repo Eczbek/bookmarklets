@@ -46,6 +46,8 @@ javascript: (async () => {
 	window.util.median = (values) => values.length % 2 ? values[(values.length - 1) / 2] : (values[values.length / 2 - 1] + values[values.length / 2]) / 2;
 	
 	window.util.mode = (values) => Math.max(...values);
+
+	window.util.weightedMean = (values, weights) => values.reduce((total, value, index) => total + value * weights[index], 0) / weights.reduce((total, weight) => total + weight,0);
 	
 	window.util.frequenciesMean = (frequencies, midpoints) => window.util.zip(frequencies, midpoints, (x, y) => x * y).reduce((x, y) => x + y, 0) / frequencies.reduce((x, y) => x + y, 0);
 	
