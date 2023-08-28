@@ -69,7 +69,7 @@ javascript: (async () => {
 
 	window.util.stemLeafSplit = (plot) => plot.flatMap(([a, b]) => b&&String(b).split('').map(c=>+(a+(String(a).includes('.')?'':'.')+c))).filter(x=>x);
 
-	window.util.deviations = (values) => values.map(x => (x - window.util.mean(x)) ** 2);
+	window.util.deviations = (values) => values.map(x => (x - window.util.mean(values)) ** 2);
 
 	window.util.variance = (values) => window.util.mean(window.util.deviations(values));
 
