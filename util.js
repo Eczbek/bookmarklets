@@ -48,6 +48,8 @@ javascript: (async () => {
 	
 	window.util.mode = (values) => Math.max(...values);
 
+	window.util.antimode = (values) => Math.min(...values);
+
 	window.util.weightedMean = (values, weights) => values.reduce((total, value, index) => total + value * weights[index], 0) / weights.reduce((total, weight) => total + weight,0);
 	
 	window.util.frequenciesMean = (frequencies, midpoints) => window.util.zip(frequencies, midpoints, (x, y) => x * y).reduce((x, y) => x + y, 0) / frequencies.reduce((x, y) => x + y, 0);
@@ -74,4 +76,6 @@ javascript: (async () => {
 	window.util.variance = (values) => window.util.mean(window.util.deviations(values));
 
 	window.util.standardDeviation = (values) => Math.sqrt(window.util.variance(values));
+
+	window.util.range = (values) => window.util.mode(values) - window.util.antimode(values);
 })();
