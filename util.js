@@ -40,6 +40,11 @@ javascript: (async () => {
 	window.util.classMidpoints = (min, width, count) => [...Array(count)].map((_, y) => (min * 2 + y * width * 2 + width - 1) / 2);
 	
 	window.util.mean = (values) => values.reduce((x, y) => x + y, 0) / values.length;
+
+	window.util.classesMean = (frequencies, min, width) => {
+		const midpoints = window.util.classMidpoints(min, width, frequencies.length);
+		return window.util.mean(frequencies.flatMap((frequency, i) => Array(frequency).fill(midpoints[i])));
+	};
 	
 	window.util.median = (values) => {
 		values = values.sort((a, b) => a > b);
