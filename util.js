@@ -51,7 +51,7 @@ javascript: (async () => {
 		return values.length % 2 ? values[(values.length - 1) / 2] : (values[values.length / 2 - 1] + values[values.length / 2]) / 2;
 	};
 	
-	window.util.mode = (values) => Math.max(...values);
+	window.util.modes = (values) => values.filter((v, i) => (i ? v > values[i - 1] : true) && (i < values.length - 1 ? v > values[i + 1] : true));
 
 	window.util.antimode = (values) => Math.min(...values);
 
