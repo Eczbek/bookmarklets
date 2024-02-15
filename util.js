@@ -80,7 +80,15 @@ javascript: (async () => {
 
 	window.util.variance = (values) => window.util.mean(window.util.deviations(values));
 
-	window.util.standardDeviation = (values) => Math.sqrt(window.util.variance(values));
+	window.util.populationStandardDeviation = (values) => {
+		const mean = window.util.mean(values);
+		return Math.sqrt(values.reduce((total, value) => total + (value - mean) ** 2, 0) / values.length);
+	};
+
+	window.util.sampleStandardDeviation = (values) => {
+		const mean = window.util.mean(values);
+		return Math.sqrt(values.reduce((total, value) => total + (value - mean) ** 2, 0) / (values.length - 1));
+	};
 
 	window.util.range = (values) => window.util.mode(values) - window.util.antimode(values);
 })();
