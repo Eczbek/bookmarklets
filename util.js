@@ -91,4 +91,8 @@ javascript: (async () => {
 	};
 
 	window.util.range = (values) => window.util.mode(values) - window.util.antimode(values);
+
+	window.util.zScorePopulation = (value, values) => (value - window.util.mean(values)) / window.util.populationStandardDeviation(values);
+
+	window.util.zScoreSample = (value, values) => (value - window.util.mean(values)) / window.util.sampleStandardDeviation(values);
 })();
