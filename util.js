@@ -95,4 +95,10 @@ javascript: (async () => {
 	window.util.zScorePopulation = (value, values) => (value - window.util.mean(values)) / window.util.populationStandardDeviation(values);
 
 	window.util.zScoreSample = (value, values) => (value - window.util.mean(values)) / window.util.sampleStandardDeviation(values);
+
+	window.util.q1 = (values) => window.util.median(values.sort((a, b) => a > b).slice(0, Math.ceil(values.length / 2)));
+
+	window.util.q3 = (values) => window.util.median(values.sort((a, b) => a > b).slice(Math.floor(values.length / 2)));
+
+	window.util.interquartileRange = (values) => window.util.q3(values) - window.util.q1(values);
 })();
